@@ -1,4 +1,4 @@
-##Toggle Device Script
+Toggle Device Script
 
 Use xinput --list to get the number of the device that you would like to toggle, then call toggle_device with that number.
 
