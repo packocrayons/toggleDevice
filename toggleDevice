@@ -1,0 +1,16 @@
+#!/bin/bash 
+
+DEVICE_ENABLED=`xinput list-props "$1" | awk '/Enabled/ {print $NF}'`
+NUM=`xinput -list | grep -n -m 1 "$1" | cut -d: -f1`
+DEVICE_NAME=`xinput -list --name-only | sed "${NUM}q;d"`
+
+if [ "$DEVICE_ENABLED" = "1" ] #disable if it's enabled
+	then
+	xinput set-prop "$1" "Device Enabled" 0
+	notify-send "Device $DEVICE_NAME has been disabled"
+else
+	xinput set-prop "$1" "Device Enabled" 1
+	notify-send "Device $DEVICE_NAME has been enabled"
+fi
+
+
